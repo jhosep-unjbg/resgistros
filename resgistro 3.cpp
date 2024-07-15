@@ -1,54 +1,48 @@
 #include <iostream>
-#include <string>
+#include <vector>
 using namespace std;
 
-struct Persona{
+struct Persona {
     string nombre;
-    int diaNacimiento;
-    int mesNacimiento;
-    int anioNacimiento;
+    int dia;
+    int mes;
+    int anno;
 };
 
 int main() {
-    const int MAX_PERSONAS = 100;
-    Persona personas[MAX_PERSONAS];
-    int numPersonas = 0;
-    char respuesta;
-    
-    do {
-        cout << "Ingrese el nombre de la persona: ";
-        cin >> personas[numPersonas].nombre;
+    int n;
+    cout << "Ingrese el número de personas: ";
+    cin >> n;
 
-        cout << "Ingrese el día de nacimiento de la persona: ";
-        cin >> personas[numPersonas].diaNacimiento;
+    vector<Persona> personas(n);
 
-        cout << "Ingrese el mes de nacimiento de la persona: ";
-        cin >> personas[numPersonas].mesNacimiento;
+    for (int i = 0; i < n; i++) {
+        cout << "Persona " << i+1 << endl;
+        cout << "Nombre: ";
+        cin >> personas[i].nombre;
+        cout << "Día de nacimiento: ";
+        cin >> personas[i].dia;
+        cout << "Mes de nacimiento: ";
+        cin >> personas[i].mes;
+        cout << "Año de nacimiento: ";
+        cin >> personas[i].anno;
+    }
 
-        cout << "Ingrese el año de nacimiento de la persona: ";
-        cin >> personas[numPersonas].anioNacimiento;
+    int numeroMes;
+    cout << "Ingrese un número de mes (1-12) o 0 para terminar: ";
+    cin >> numeroMes;
 
-        numPersonas++;
-
-        cout << "¿Desea ingresar los datos de otra persona? (s/n): ";
-        cin >> respuesta;
-    } while (respuesta == 's');
-
-    
-    int mesConsulta;
-    do {
-        cout << "Ingrese un número de mes (0 para salir): ";
-        cin >> mesConsulta;
-
-        if (mesConsulta != 0) {
-            for (int i = 0; i < numPersonas; i++) {
-                if (personas[i].mesNacimiento == mesConsulta) {
-                    std::cout << "Nombre: " << personas[i].nombre << std::endl;
-                    std::cout << "Fecha de nacimiento: " << personas[i].diaNacimiento << "/" << personas[i].mesNacimiento << "/" << personas[i].anioNacimiento << std::endl;
-                }
+    while (numeroMes != 0) {
+        cout << "Personas que cumplen años en el mes " << numeroMes << ":" << endl;
+        for (int i = 0; i < n; i++) {
+            if (personas[i].mes == numeroMes) {
+                cout << "Nombre: " << personas[i].nombre << ", Fecha de nacimiento: " << personas[i].dia << "/" << personas[i].mes << "/" << personas[i].anno << endl;
             }
         }
-    } while (mesConsulta != 0);
+
+        cout << "Ingrese un número de mes (1-12) o 0 para terminar: ";
+        cin >> numeroMes;
+    }
 
     return 0;
 }
