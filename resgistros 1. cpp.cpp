@@ -1,5 +1,5 @@
 #include <iostream> 
-
+#include<string>
 using namespace std;
 
 struct Empleado { 
@@ -30,10 +30,10 @@ Empleado mayor_salario = empleados[0];
 Empleado menor_salario = empleados[0];
 
 for (int i = 1; i < n; i++) {
-    if (empleados[i].sueldo > mayor_salario.sueldo) {
+    if (empleados[i].sueldo >= mayor_salario.sueldo) {
         mayor_salario = empleados[i];
     }
-    if (empleados[i].sueldo < menor_salario.sueldo) {
+    if (empleados[i].sueldo <= menor_salario.sueldo) {
         menor_salario = empleados[i];
     }
 }
